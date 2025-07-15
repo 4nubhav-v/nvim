@@ -629,11 +629,17 @@ require("lazy").setup({
         lua = { "stylua" },
         html = { "prettier" },
         css = { "prettier" },
+        markdown = { "prettierd" },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      },
+      formatters = {
+        prettier = {
+          timeout_ms = 10000,
+        },
       },
     },
   },
@@ -798,6 +804,15 @@ require("lazy").setup({
         transparent_mode = true,
       },
     },
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && yarn install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   },
   -- Highlight todo, notes, etc in comments
   {
